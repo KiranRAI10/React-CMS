@@ -8,20 +8,15 @@ import { useNavigate } from 'react-router-dom'
 const CreateBlog = () => {
 
     const navigate = useNavigate()
-    const [title,setTitle] = useState("")
-    const [subTitle, setSubTitle] = useState("")
-    const [description,setDescription] =useState("")
 
     // console.log(title,subTitle,description)
 
     const createBlog = async (e) =>{
         e.preventDefault()
+        const formData =  new FormData(e.currentTarget)
+        // console.log(formData)
 
-        const data = {
-            title : title,
-            subTitle : subTitle,
-            description : description
-        }
+        const data = Object.fromEntries(formData)
 
 
         const response = await axios.post("http://localhost:3000/createBlog",data)
@@ -44,15 +39,15 @@ const CreateBlog = () => {
         <form onSubmit={createBlog}>
             <div className="form-group">
                 <label htmlFor="name">Title:</label>
-                <input type="text" id="name" name="name" required onChange={(e) =>setTitle (e.target.value)}/>
+                <input type="text" id="name" name="title" required />
             </div>
             <div className="form-group">
                 <label htmlFor="email">Sub Title:</label>
-                <input type="text" id="email" name="email" required onChange={(e) => setSubTitle (e.target.value)}/>
+                <input type="text" id="email" name="subTitle" required />
             </div>
             <div className="form-group">
                 <label htmlFor="message">Message:</label>
-                <textarea id="message" name="message" rows="5" required onChange={(e) => setDescription (e.target.value)}/>
+                <textarea id="message" name="description" rows="5" required />
             </div>
             <button type="submit" className="submit-button">Submit</button>
         </form>
