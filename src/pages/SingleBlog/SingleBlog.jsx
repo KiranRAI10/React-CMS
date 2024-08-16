@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import './SingleBlog.css'  // Import the CSS file for styling
+import NavBar from '../../component/Navbar/NavBar'
 
 const SingleBlog = () => {
 
@@ -27,16 +28,22 @@ const SingleBlog = () => {
     useEffect(() => {
         fetchSingleBlog()
     }, [])
+    // console.log(blog)
 
     return (
+        <>
+        <NavBar/>
         <div className="single-blog-container">
             <div className="single-blog-card">
                 <h1 className="blog-title">{blog.title}</h1>
                 <h3 className="blog-subtitle">{blog.subTitle}</h3>
                 <p className="blog-description">{blog.description}</p>
                 <button className="delete-button" onClick={deleteBlog}>Delete</button>
+                < Link to={`/updateBlog/${blog._id}`}>Update</Link>
             </div>
         </div>
+        
+        </>
     )
 }
 
