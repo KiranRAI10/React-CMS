@@ -43,7 +43,7 @@ const CreateBlog = () => {
     <div className="form-container">
         <h1 className="form-title">Form Title</h1>
         <h2 className="form-subtitle">Form Subtitle</h2>
-        <p className="form-description">Please fill out the form below and submit your details.</p>
+        <p className="form-description">Create your blog.</p>
         
         <form onSubmit={createBlog}>
             <div className="form-group">
